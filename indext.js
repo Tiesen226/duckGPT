@@ -47,13 +47,16 @@ function reply(chatItem) {
             i++;
             setTimeout(quack, 200);
         }
+
     }
 
     quack();
+    chatItem.scrollIntoView(true);
 }
 
 function food(chatItem) {
     chatItem.innerHTML += `Vit quay ngon`
     chatBox.appendChild(chatItem);
     audio.play();
+    chatItem.scrollIntoView(true);
 }
