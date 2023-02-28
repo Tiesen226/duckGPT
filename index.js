@@ -70,7 +70,7 @@ function reply(chatItem) {
 
         const tLength = text.length;
         if (i < tLength) {
-            chatItem.innerHTML += `${text[i]} `
+            chatItem.innerHTML += `${text[i]} `;
             chatBox.appendChild(chatItem);
             audio.play();
             i++;
@@ -83,7 +83,7 @@ function reply(chatItem) {
 };
 
 function food(chatItem) {
-    chatItem.innerHTML += `Vịt quay ngon`
+    chatItem.innerHTML += `Vịt quay ngon`;
     chatBox.appendChild(chatItem);
     audio.play();
 
