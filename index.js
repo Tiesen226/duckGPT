@@ -34,8 +34,9 @@ function submit() {
 function reply(chatItem) {
 
     const randomNumber = Math.floor(Math.random() * 10);
+    if (randomNumber <= 0) randomNumbers = 1;
     let text = '';
-    for (let i = 1; i < randomNumber; i++) text += 'quack ';
+    for (let i = 1; i <= randomNumber; i++) text += 'quack ';
     const texts = text.split(' ');
 
     let i = 0;
@@ -48,8 +49,7 @@ function reply(chatItem) {
             setTimeout(quack, 200);
         }
 
-    }
-
+    };
     quack();
     chatItem.scrollIntoView(true);
 }
