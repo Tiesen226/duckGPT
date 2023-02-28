@@ -27,7 +27,7 @@ function submit() {
     chatItemD.innerHTML = `<img src="./duck.jpg" alt="duckIcon" id="duckIcon"/>&ensp;&ensp;`
     chatBox.appendChild(chatItemD);
 
-    if (messValue == 'food') { food(chatItemD) }
+    if (messValue === "food") { food(chatItemD) }
     else setTimeout(reply(chatItemD), 100);
 }
 
