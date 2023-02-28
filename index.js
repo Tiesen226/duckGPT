@@ -1,20 +1,19 @@
+// Get element form DOM
 const chatBox = document.querySelector('.chatBox');
 const audio = document.querySelector('audio');
 const chatMess = document.querySelector('.chatForm input[type="text"]');
 const chatForm = document.querySelector('.chatForm');
 const errorMess = document.querySelector('.errorMess');
 
-let quackArray = [];
-let userArray = [];
-let canSubmit = true;
+//store the messages
+let quackArray = [], userArray = [];
+//handle submit
+let canSubmit = true, countdown = 3, timer;
 
+// When the form is submitted
 chatForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    handleSubmit(e);
-});
-
-document.addEventListener('keydown', (e) => {
-    if (e.code == 'Enter') handleSubmit(e);
+    handleSubmit();
 });
 
 function submit() {
@@ -38,26 +37,45 @@ function submit() {
     else reply(chatItemD);
 
     chatMess.value = '';
-}
+};
 
+function handleSubmit() {
+    if (canSubmit) {
+        canSubmit = false;
+        timer = setInterval(updateCountdown, 1000);
+        submit();
+        errorMess.textContent = `*Waiting ${countdown} seconds`;
+    };
+};
+
+function updateCountdown() {
+    countdown--;
+    errorMess.textContent = `*Waiting ${countdown} seconds`;
+    if (countdown === 0) {
+        clearInterval(timer);
+        canSubmit = true;
+        countdown = 3;
+        errorMess.textContent = '';
+    };
+};
+
+//reply message after submit
 function reply(chatItem) {
-    let randomNumber = Math.floor(Math.random() * 10);
+    let i = 0, text = [], randomNumber = Math.floor(Math.random() * 10);
     if (randomNumber <= 0) randomNumber = 1;
-    let text = '';
-    for (let i = 1; i <= randomNumber; i++) text += 'quack ';
-    const texts = text.split(' ');
+    for (let i = 1; i <= randomNumber; i++) text.push('quack');
 
-    let i = 0;
+
     function quack() {
-        const tLength = texts.length;
+
+        const tLength = text.length;
         if (i < tLength) {
-            chatItem.innerHTML += `${texts[i]} `
+            chatItem.innerHTML += `${text[i]} `
             chatBox.appendChild(chatItem);
             audio.play();
             i++;
-            setTimeout(quack, 200);
+            setTimeout(quack, 250);
         };
-
     };
     quack();
 
@@ -70,25 +88,6 @@ function food(chatItem) {
     audio.play();
 
     chatItem.scrollIntoView(true);
-}
+};
 
-let countdown = 5;
-let timer;
-function handleSubmit() {
-    if (canSubmit) {
-        canSubmit = false;
-        timer = setInterval(updateCountdown, 1000);
-        submit();
-    }
-}
 
-function updateCountdown() {
-    countdown--;
-    errorMess.textContent = `Waiting ${countdown} seconds`;
-    if (countdown === 0) {
-        clearInterval(timer);
-        canSubmit = true;
-        countdown = 5;
-        errorMess.textContent = "";
-    }
-}

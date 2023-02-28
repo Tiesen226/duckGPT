@@ -85,6 +85,8 @@ html {
     font-size: 30px;
     display: flex;
     padding: 10px;
+    width: 974px;
+    word-wrap: break-word;
 }
 
 #userIcon,
