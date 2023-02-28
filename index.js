@@ -12,7 +12,7 @@ document.addEventListener('keydown', (e) => {
 
 function submit() {
 
-    const messValue = document.querySelector('.chatForm input[type="text"]').value;
+    let messValue = document.querySelector('.chatForm input[type="text"]').value;
     const chatItem = document.createElement('div');
 
     chatItem.classList.add('user-chat-item');
@@ -20,7 +20,7 @@ function submit() {
     chatBox.appendChild(chatItem);
     chatItem.scrollIntoView(true);
 
-    document.querySelector('.chatForm input[type="text"]').value = ' ';
+    messValue = ' ';
 
     const chatItemD = document.createElement('div');
     chatItemD.classList.add('duck-chat-item');
